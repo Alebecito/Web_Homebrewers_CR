@@ -80,7 +80,7 @@ const routes = [
   {
     type: "collapse",
     name: "Publicaciones y Reseñas",
-    key: "posts-reviews",
+    key: "posts_Reviews",
     icon: <Icon fontSize="small">comment</Icon>,
     route: "/posts_Reviews",
     component: <Posts_Reviews />,

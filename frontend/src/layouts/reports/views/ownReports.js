@@ -54,48 +54,6 @@ function Own_Reports() {
             />
             <Divider orientation="vertical" sx={{ mx: 0 }} />
           </Grid>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-            <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
-            <OwnReportInfoCard
-              title="Reporte"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-              info={{
-                De: "Alec M. Thompson",
-                Para: "214124",
-                "Tipo de Reporte": "Publicación",
-                Fecha: "2021-10-10",
-              }}
-            />
-            <Divider orientation="vertical" sx={{ mx: 0 }} />
-          </Grid>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-            <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
-            <OwnReportInfoCard
-              title="Reporte"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-              info={{
-                De: "Alec M. Thompson",
-                Para: "214124",
-                "Tipo de Reporte": "Publicación",
-                Fecha: "2021-10-10",
-              }}
-            />
-            <Divider orientation="vertical" sx={{ mx: 0 }} />
-          </Grid>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-            <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
-            <OwnReportInfoCard
-              title="Reporte"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-              info={{
-                De: "Alec M. Thompson",
-                Para: "214124",
-                "Tipo de Reporte": "Publicación",
-                Fecha: "2021-10-10",
-              }}
-            />
-            <Divider orientation="vertical" sx={{ mx: 0 }} />
-          </Grid>
         </Grid>
       </MDBox>
     </DashboardLayout>

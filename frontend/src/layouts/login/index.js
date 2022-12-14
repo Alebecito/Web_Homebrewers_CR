@@ -6,7 +6,8 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import BasicLayout from "./components/basicLayout";
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import bgImage from "assets/images/login.png";
+
 
 function Basic() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Basic() {
       <Card>
         <MDBox
           variant="gradient"
-          bgColor="info"
+          bgColor="secondary"
           borderRadius="lg"
           coloredShadow="info"
           mx={2}
@@ -50,7 +51,7 @@ function Basic() {
             <MDBox mt={4} mb={1}>
               <MDButton
                 variant="gradient"
-                color="info"
+                color="secondary"
                 fullWidth
                 onClick={handleClick}
               >

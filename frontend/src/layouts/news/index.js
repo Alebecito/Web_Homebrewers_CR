@@ -15,7 +15,7 @@ export default function News() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDButton variant="contained" color="secondary" onClick={handleClick}>
+      <MDButton variant="gradient" color="secondary" onClick={handleClick}>
         Publicar noticia
       </MDButton>
       <MDBox mt={6}>

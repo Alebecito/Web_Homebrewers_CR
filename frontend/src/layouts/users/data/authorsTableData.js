@@ -22,20 +22,6 @@ export default function data() {
     </MDBox>
   );
 
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography
-        display="block"
-        variant="caption"
-        color="text"
-        fontWeight="medium"
-      >
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
-  );
-
   const [successSB, setSuccessSB] = useState(false);
   const [warningSB, setWarningSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
@@ -112,7 +98,6 @@ export default function data() {
             email="john@creative-tim.com"
           />
         ),
-        function: <Job title="Manager" description="Organization" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -160,7 +145,6 @@ export default function data() {
             email="alexa@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -202,7 +186,6 @@ export default function data() {
             email="laurent@creative-tim.com"
           />
         ),
-        function: <Job title="Executive" description="Projects" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -244,7 +227,6 @@ export default function data() {
             email="michael@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -286,7 +268,6 @@ export default function data() {
             email="richard@creative-tim.com"
           />
         ),
-        function: <Job title="Manager" description="Executive" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -328,7 +309,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -370,7 +350,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -412,7 +391,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -454,7 +432,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -496,7 +473,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -538,7 +514,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -580,7 +555,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge
@@ -622,7 +596,6 @@ export default function data() {
             email="miriam@creative-tim.com"
           />
         ),
-        function: <Job title="Programator" description="Developer" />,
         status: (
           <MDBox ml={-1}>
             <MDBadge

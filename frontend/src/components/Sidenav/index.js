@@ -177,7 +177,7 @@ Sidenav.propTypes = {
     "dark",
   ]),
   brand: PropTypes.string,
-  brandName: PropTypes.string.isRequired,
+  brandName: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

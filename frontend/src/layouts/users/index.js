@@ -23,9 +23,9 @@ function Tables() {
                 py={3}
                 px={2}
                 variant="gradient"
-                bgColor="info"
+                bgColor="secondary"
                 borderRadius="lg"
-                coloredShadow="info"
+                coloredShadow="secondary"
               >
                 <MDTypography variant="h6" color="white">
                   Usuarios registrados

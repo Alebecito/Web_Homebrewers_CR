@@ -6,7 +6,7 @@ import Sidenav from "components/Sidenav";
 import theme from "assets/theme";
 import routes from "routes";
 import { useMaterialUIController, setMiniSidenav } from "context";
-import brandDark from "assets/images/logo-ct-dark.png";
+import logo from "assets/images/logo.png";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -57,7 +57,6 @@ export default function App() {
           />
         );
       }
-
       return null;
     });
 
@@ -68,7 +67,7 @@ export default function App() {
         <>
           <Sidenav
             color={sidenavColor}
-            brand={brandDark}
+            brand={logo}
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

@@ -29,12 +29,12 @@ const colors = {
   },
 
   secondary: {
-    main: "#7b809a",
-    focus: "#8f93a9",
+    main: "#454545",
+    focus: "#454545",
   },
 
   info: {
-    main: "#1A73E8",
+    main: "#454545",
     focus: "#1662C4",
   },
 
@@ -82,8 +82,8 @@ const colors = {
     },
 
     secondary: {
-      main: "#747b8a",
-      state: "#495361",
+      main: "#454545",
+      state: "#454545",
     },
 
     info: {
@@ -112,7 +112,7 @@ const colors = {
     },
 
     dark: {
-      main: "#42424a",
+      main: "#454545",
       state: "#191919",
     },
   },

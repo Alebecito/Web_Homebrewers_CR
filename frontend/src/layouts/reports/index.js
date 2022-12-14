@@ -16,7 +16,7 @@ function Reports() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDButton variant="contained" color="secondary" onClick={handleClick}>
+      <MDButton variant="gradient" color="secondary" onClick={handleClick}>
         Mis Reportes
       </MDButton>
       <MDBox mb={2} />
