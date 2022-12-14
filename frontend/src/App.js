@@ -4,7 +4,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Sidenav from "components/Sidenav";
 import theme from "assets/theme";
-import themeDark from "assets/theme-dark";
 import routes from "routes";
 import { useMaterialUIController, setMiniSidenav } from "context";
 import brandDark from "assets/images/logo-ct-dark.png";
@@ -63,7 +62,7 @@ export default function App() {
     });
 
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       {layout === "dashboard" && (
         <>
