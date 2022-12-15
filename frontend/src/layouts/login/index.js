@@ -31,7 +31,7 @@ function Basic() {
           textAlign="center"
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+            Inicio de sesión
           </MDTypography>
           <Grid
             container
@@ -55,7 +55,7 @@ function Basic() {
                 fullWidth
                 onClick={handleClick}
               >
-                sign in
+                Iniciar sesión
               </MDButton>
             </MDBox>
           </MDBox>
