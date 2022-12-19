@@ -2,8 +2,16 @@ import Card from "@mui/material/Card";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import AuthBox from "./authBox";
+import React, { useState, useEffect } from "react";
 
-function AuthInformation() {
+function AuthInformation({ usuariosP }) {
+
+
+const [usuarios, setUsuarios] = useState(usuariosP);
+
+console.log(usuarios);
+console.log(usuariosP)
+
   return (
     <div style={{ position: "absolute", left: "350px" }}>
       <Card id="delete-account">
@@ -20,23 +28,33 @@ function AuthInformation() {
             p={0}
             m={0}
           >
+            {usuarios.map((usuario) =>{
+
+           return(
+                <AuthBox 
+                name={usuario.nombre}
+                email={usuario.email}
+                
+              />
+           )
+            })}
+            
+             
             <AuthBox
-              name="oliver liam"
-              company="viking burrito"
+              name={"oliver harper"}
+
               email="oliver@burrito.com"
-              vat="01/12/2022"
+
             />
             <AuthBox
               name="lucas harper"
-              company="stone tech zone"
               email="lucas@stone-tech.com"
-              vat="12/12/2022"
+
             />
             <AuthBox
               name="ethan james"
-              company="fiber notion"
               email="ethan@fiber.com"
-              vat="08/12/2022"
+
               noGutter
             />
           </MDBox>
