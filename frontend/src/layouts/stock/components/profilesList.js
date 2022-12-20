@@ -7,56 +7,45 @@ import MDAvatar from "components/MDAvatar";
 import MDButton from "components/MDButton";
 
 function ProfilesList({ title, profiles, shadow }) {
-  const renderProfiles = profiles.map(({ image, name, email, action }) => (
-    <MDBox
-      key={name}
-      component="li"
-      display="flex"
-      alignItems="center"
-      py={1}
-      mb={1}
-    >
-      <MDBox mr={2}>
-        <MDAvatar src={image} alt="avatar" shadow="md" />
-      </MDBox>
+  const renderProfiles = profiles.map(
+    ({ fotoDePerfil, nombre, correo, id }) => (
       <MDBox
+        key={nombre}
+        component="li"
         display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-        justifyContent="center"
+        alignItems="center"
+        py={1}
+        mb={1}
       >
-        <MDTypography variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption" color="text">
-          {email}
-        </MDTypography>
-      </MDBox>
-      <MDBox ml="auto">
-        {action.type === "internal" ? (
+        <MDBox mr={2}>
+          <MDAvatar src={fotoDePerfil} alt="avatar" shadow="md" />
+        </MDBox>
+        <MDBox
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+          justifyContent="center"
+        >
+          <MDTypography variant="button" fontWeight="medium">
+            {nombre}
+          </MDTypography>
+          <MDTypography variant="caption" color="text">
+            {correo}
+          </MDTypography>
+        </MDBox>
+        <MDBox ml="auto">
           <MDButton
             component={Link}
-            to={action.route}
+            to={"/stock/inventory"}
             variant="text"
             color="info"
           >
-            {action.label}
+            {"Ver inventario"}
           </MDButton>
-        ) : (
-          <MDButton
-            component="a"
-            href={action.route}
-            target="_blank"
-            rel="noreferrer"
-            variant="text"
-            color={action.color}
-          >
-            {action.label}
-          </MDButton>
-        )}
+        </MDBox>
       </MDBox>
-    </MDBox>
-  ));
+    )
+  );
 
   return (
     <Card
