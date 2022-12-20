@@ -34,7 +34,7 @@ const routes = [
     component: <News_Comments />,
   },
   {
-    route: "/stock/inventory",
+    route: "/stock/:id",
     component: <Inventory />,
   },
   {

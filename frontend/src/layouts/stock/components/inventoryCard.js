@@ -11,7 +11,13 @@ import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 
-export default function InventoryCard() {
+export default function InventoryCard({
+  title,
+  description,
+  quantity,
+  date,
+  productImage,
+}) {
   const handleDelete = () => {
     alert("Eliminar producto del inventario");
   };
@@ -20,7 +26,7 @@ export default function InventoryCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={<Avatar sx={{ bgcolor: red }} aria-label="recipe"></Avatar>}
-        title="Lorem ipsum dolor sit amet, consectetur."
+        title={title}
       />
       <CardMedia
         component="img"
@@ -30,16 +36,16 @@ export default function InventoryCard() {
           l: 10,
         }}
         height="194"
-        src="https://labuenacheve.com/wp-content/uploads/2020/09/PORTADAS-WORDPRESS-16.png"
+        src={productImage}
         alt="Post"
       />
       <CardContent>
         <MDTypography variant="body2" color="text.secondary">
-          Lúpulo de buena calidad para la elaboración de cerveza artesanal.
+          {description}
         </MDTypography>
         <br />
-        <MDTypography variant="h6">Cantidad: 20</MDTypography>
-        <MDTypography variant="h6">Fecha de caducidad: 2021-12-31</MDTypography>
+        <MDTypography variant="h6">Cantidad: {quantity}</MDTypography>
+        <MDTypography variant="h6">Fecha de caducidad: {date}</MDTypography>
       </CardContent>
       <CardActions disableSpacing>
         <Grid container direction="row" alignItems="center"></Grid>

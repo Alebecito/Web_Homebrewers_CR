@@ -11,11 +11,12 @@ export default function Stock() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.get(`http://localhost:5000/usuario//GetAllUsersInfo`);
+      let res = await axios.get(`http://localhost:5000/usuario/GetAllUsersInfo`);
       let data = res.data;
       setUsuarios(data);
     };
     fetchData().catch(console.error);
+    console.log(usuarios)
   }, []);
 
 

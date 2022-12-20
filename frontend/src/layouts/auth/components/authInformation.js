@@ -39,7 +39,12 @@ function AuthInformation() {
             m={0}
           >
             {usuarios.map((usuario) => (
-              <AuthBox name={usuario.nombre} email={usuario.correo} image={usuario.cedula} registrationDate={parseDate(usuario.fechaRegistro)}/>
+              <AuthBox
+                name={usuario.nombre}
+                email={usuario.correo}
+                image={usuario.cedula}
+                registrationDate={parseDate(usuario.fechaRegistro)}
+              />
             ))}
           </MDBox>
         </MDBox>

@@ -8,7 +8,7 @@ import MDButton from "components/MDButton";
 
 function ProfilesList({ title, profiles, shadow }) {
   const renderProfiles = profiles.map(
-    ({ fotoDePerfil, nombre, correo, id }) => (
+    ({ fotoDePerfil, nombre, correo, usuarioGUID }) => (
       <MDBox
         key={nombre}
         component="li"
@@ -36,7 +36,7 @@ function ProfilesList({ title, profiles, shadow }) {
         <MDBox ml="auto">
           <MDButton
             component={Link}
-            to={"/stock/inventory"}
+            to={`/stock/${usuarioGUID}`}
             variant="text"
             color="info"
           >

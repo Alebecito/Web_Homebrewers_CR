@@ -3,8 +3,33 @@ import DashboardNavbar from "components/DashboardNavbar";
 import InventoryCard from "../components/inventoryCard";
 import { Grid } from "@mui/material";
 import MDBox from "components/MDBox";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function News() {
+export default function Inventory() {
+  const [inventario, setInventario] = useState([]);
+  const { id } = useParams();
+  console.log(id);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(
+        `http://localhost:5000/inventario/getAllInventoryFromUser/${id}`
+      );
+      let data = res.data[0];
+      setInventario(data);
+      console.log(inventario);
+    };
+    fetchData().catch(console.error);
+  }, []);
+
+  const parseDate = (date) => {
+    let dateArray = date.split("T");
+    let dateParsed = dateArray[0];
+    return dateParsed;
+  };
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -16,24 +41,17 @@ export default function News() {
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
-          <Grid item xs="auto" md="auto">
-            <InventoryCard />
-          </Grid>
+          {inventario.map((producto) => (
+            <Grid item xs="auto" md="auto">
+              <InventoryCard
+                title={producto.titulo}
+                description={producto.cuerpo}
+                quantity={producto.cantidad}
+                date={parseDate(producto.fechaCaducidad)}
+                productImage={producto.fotoProducto}
+              />
+            </Grid>
+          ))}
         </Grid>
       </MDBox>
     </DashboardLayout>
