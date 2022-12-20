@@ -3,11 +3,10 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import MDSnackbar from "components/MDSnackbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function data() {
   const Author = ({ image, name, email }) => (
@@ -22,14 +21,39 @@ export default function data() {
     </MDBox>
   );
 
+  const [usuarios, setUsuarios] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(`http://localhost:5000/usuario/getUsersState`);
+      let data = res.data;
+      setUsuarios(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
+
+  const parseDate = (date) => {
+    let dateArray = date.split("T");
+    let dateParsed = dateArray[0];
+    return dateParsed;
+  };
+
   const [successSB, setSuccessSB] = useState(false);
   const [warningSB, setWarningSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
 
-  const openSuccessSB = () => setSuccessSB(true);
-  const closeSuccessSB = () => setSuccessSB(false);
-  const openWarningSB = () => setWarningSB(true);
-  const closeWarningSB = () => setWarningSB(false);
+  const openSuccessSB = () => {
+    setSuccessSB(true);
+    setTimeout(() => {
+      setSuccessSB(false);
+    }, 3000);
+  };
+
+  const openWarningSB = () => {
+    setWarningSB(true);
+    setTimeout(() => {
+      setWarningSB(false);
+    }, 3000);
+  };
 
   const openErrorSB = () => {
     setErrorSB(true);
@@ -37,7 +61,10 @@ export default function data() {
       setErrorSB(false);
     }, 3000);
   };
+
   const closeErrorSB = () => setErrorSB(false);
+  const closeWarningSB = () => setWarningSB(false);
+  const closeSuccessSB = () => setSuccessSB(false);
 
   const renderSuccessSB = (
     <MDSnackbar
@@ -83,564 +110,79 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Usuario", accessor: "author", width: "45%", align: "left" },
+      { Header: "Usuario", accessor: "user", width: "45%", align: "left" },
       { Header: "Estado", accessor: "status", align: "center" },
-      { Header: "Fecha Registro", accessor: "employed", align: "center" },
+      { Header: "Fecha Registro", accessor: "date", align: "center" },
       { Header: "Acción", accessor: "action", align: "center" },
     ],
 
-    rows: [
-      {
-        author: (
-          <Author
-            image={team2}
-            name="John Michael"
-            email="john@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
+    rows: usuarios.map((usuario) => ({
+      user: (
+        <Author
+          image={usuario.fotoDePerfil}
+          name={usuario.nombre}
+          email={usuario.correo}
+        />
+      ),
+      status: (
+        <MDBox ml={-1}>
+          {usuario.estado === "habilitado" ? (
             <MDBadge
               badgeContent="habilitado"
               color="success"
               variant="gradient"
               size="sm"
             />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
+          ) : (
+            <MDBadge
+              badgeContent="deshabilitado"
+              color="secondary"
+              variant="gradient"
+              size="sm"
+            />
+          )}
+        </MDBox>
+      ),
+      date: (
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+        >
+          {parseDate(usuario.fechaRegistro)}
+        </MDTypography>
+      ),
+      action: (
+        <div>
+          <MDButton
+            color="error"
+            size="small"
+            variant="text"
+            onClick={openErrorSB}
           >
-            23/04/18
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton
-              color="error"
-              size="small"
-              variant="text"
-              onClick={openErrorSB}
-            >
-              Eliminar
-            </MDButton>
-            {renderErrorSB}
-            <br />
-            <MDButton color="warning" size="small" variant="text">
+            Eliminar
+          </MDButton>
+          {renderErrorSB}
+          <br />
+          {usuario.estado === "habilitado" ? (
+            <>
+            <MDButton color="warning" size="small" variant="text" onClick={openWarningSB}>
               Deshabilitar
             </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Alexa Liras"
-            email="alexa@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            11/01/19
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Laurent Perrier"
-            email="laurent@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="habilitado"
-              color="success"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            19/09/17
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="warning" size="small" variant="text">
-              Deshabilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Michael Levi"
-            email="michael@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="habilitado"
-              color="success"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            24/12/08
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="warning" size="small" variant="text">
-              Deshabilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Richard Gran"
-            email="richard@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            04/10/21
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton color="error" size="small" variant="text">
-              Eliminar
-            </MDButton>
-            <br />
-            <MDButton color="success" size="small" variant="text">
-              Habilitar
-            </MDButton>
-          </div>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="deshabilitado"
-              color="dark"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-          >
-            14/09/20
-          </MDTypography>
-        ),
-        action: (
-          <div>
-            <MDButton
-              color="error"
-              size="small"
-              variant="text"
-              onClick={openErrorSB}
-            >
-              Eliminar
-            </MDButton>
-            {renderErrorSB}
-            <br />
-            <MDButton
-              color="success"
-              size="small"
-              variant="text"
-              onClick={openSuccessSB}
-            >
+            {renderWarningSB}
+            </>
+          ) : (
+            <>
+            <MDButton color="success" size="small" variant="text" onClick={openSuccessSB}>
               Habilitar
             </MDButton>
             {renderSuccessSB}
-          </div>
-        ),
-      },
-    ],
+            </>
+          )}
+        </div>
+      ),
+    })),
   };
 }
