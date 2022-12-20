@@ -3,14 +3,24 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import AuthBox from "./authBox";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function AuthInformation({ usuariosP }) {
+function AuthInformation() {
+  const [usuarios, setUsuarios] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(`http://localhost:5000/usuario/auth`);
+      let data = res.data;
+      setUsuarios(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
-
-const [usuarios, setUsuarios] = useState(usuariosP);
-
-console.log(usuarios);
-console.log(usuariosP)
+  const parseDate = (date) => {
+    let dateArray = date.split("T");
+    let dateParsed = dateArray[0];
+    return dateParsed;
+  };
 
   return (
     <div style={{ position: "absolute", left: "350px" }}>
@@ -28,35 +38,9 @@ console.log(usuariosP)
             p={0}
             m={0}
           >
-            {usuarios.map((usuario) =>{
-
-           return(
-                <AuthBox 
-                name={usuario.nombre}
-                email={usuario.email}
-                
-              />
-           )
-            })}
-            
-             
-            <AuthBox
-              name={"oliver harper"}
-
-              email="oliver@burrito.com"
-
-            />
-            <AuthBox
-              name="lucas harper"
-              email="lucas@stone-tech.com"
-
-            />
-            <AuthBox
-              name="ethan james"
-              email="ethan@fiber.com"
-
-              noGutter
-            />
+            {usuarios.map((usuario) => (
+              <AuthBox name={usuario.nombre} email={usuario.correo} image={usuario.cedula} registrationDate={parseDate(usuario.fechaRegistro)}/>
+            ))}
           </MDBox>
         </MDBox>
       </Card>

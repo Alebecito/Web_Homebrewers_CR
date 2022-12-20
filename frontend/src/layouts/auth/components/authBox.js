@@ -6,7 +6,7 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { useMaterialUIController } from "context";
 
-function AuthBox({ name, email, vat, noGutter }) {
+function AuthBox({ name, email, image, registrationDate, noGutter }) {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
@@ -69,6 +69,13 @@ function AuthBox({ name, email, vat, noGutter }) {
               {email}
             </MDTypography>
           </MDTypography>
+          < br />
+          <MDTypography variant="caption" color="text">
+            Fecha solicitud:&nbsp;&nbsp;&nbsp;
+            <MDTypography variant="caption" fontWeight="medium">
+              {registrationDate}
+            </MDTypography>
+          </MDTypography>
         </MDBox>
        
         <div style={{ paddingLeft: "300px" }}>
@@ -81,7 +88,7 @@ function AuthBox({ name, email, vat, noGutter }) {
               maxWidth: { xs: 500, md: 1000 },
               l: 10,
             }}
-            src="https://media.istockphoto.com/id/1253407221/vector/id-card-security-card-icon-vector-design-template.jpg?s=170667a&w=0&k=20&c=c-B4xF58LHHGddn46XvE7M8dM74utcDFZN4dDXsuqgY="
+            src={image}
           />
         </div>
       </MDBox>
