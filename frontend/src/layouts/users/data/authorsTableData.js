@@ -168,17 +168,27 @@ export default function data() {
           <br />
           {usuario.estado === "habilitado" ? (
             <>
-            <MDButton color="warning" size="small" variant="text" onClick={openWarningSB}>
-              Deshabilitar
-            </MDButton>
-            {renderWarningSB}
+              <MDButton
+                color="warning"
+                size="small"
+                variant="text"
+                onClick={openWarningSB}
+              >
+                Deshabilitar
+              </MDButton>
+              {renderWarningSB}
             </>
           ) : (
             <>
-            <MDButton color="success" size="small" variant="text" onClick={openSuccessSB}>
-              Habilitar
-            </MDButton>
-            {renderSuccessSB}
+              <MDButton
+                color="success"
+                size="small"
+                variant="text"
+                onClick={openSuccessSB}
+              >
+                Habilitar
+              </MDButton>
+              {renderSuccessSB}
             </>
           )}
         </div>

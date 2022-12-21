@@ -8,13 +8,13 @@ import MDInput from "components/MDInput";
 import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 
-const News_Details_Edit = () => {
+const News_Details_Edit = ({ title, description, date }) => {
   const navigate = useNavigate();
+
   const initialValues = {
-    title: "Shrimp and Chorizo Paella",
-    description:
-      "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.",
-    publishDate: "2016-09-14",
+    title: title,
+    description: description,
+    publishDate: date,
   };
 
   const validationSchema = Yup.object().shape({

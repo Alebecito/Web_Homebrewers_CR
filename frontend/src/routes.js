@@ -26,11 +26,11 @@ const routes = [
     component: <Publish_News />,
   },
   {
-    route: "/news/edit_news",
+    route: "/news/edit_news/:id",
     component: <Edit_News />,
   },
   {
-    route: "/news/comments",
+    route: "/news/comments/:id",
     component: <News_Comments />,
   },
   {

@@ -10,8 +10,8 @@ import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
 import "./news_image.css";
 
-const News_Image = (props) => {
-  const [img, setImg] = useState("");
+const News_Image = ({image, ...props}) => {
+  const [img, setImg] = useState(image);
   const inputReference = React.createRef();
 
   const fileUploadAction = () => {
