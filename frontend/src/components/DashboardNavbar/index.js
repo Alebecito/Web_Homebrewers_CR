@@ -65,6 +65,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
     },
   });
 
+  const handleClick = () => {
+    localStorage.removeItem('user');
+    localStorage.clear();
+  };
+  
+
   return (
     <AppBar
       position={absolute ? "absolute" : navbarType}
@@ -101,7 +107,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 </Icon>
               </IconButton>
               <Link to="/sign-in">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
+                <IconButton sx={navbarIconButton} size="small" disableRipple onClick={handleClick}>
                   <Icon sx={iconsStyle}>logout</Icon>
                 </IconButton>
               </Link>

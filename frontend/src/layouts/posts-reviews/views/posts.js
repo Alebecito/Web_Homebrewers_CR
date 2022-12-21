@@ -18,8 +18,7 @@ export default function Posts() {
     const fetchData = async () => {
       setLoading(true);
       let res = await axios.get(
-        `http://localhost:5000/publicacionesnoticias/getAllPublicationsfromUser/juan`
-        //`http://localhost:5000/publicacionesnoticias/getAllPublicationsfromUser/${id}`
+        `http://localhost:5000/publicacionesnoticias/getAllPublicationsfromUser/${id}`
       );
       let data = res.data;
       setPosts(data);
