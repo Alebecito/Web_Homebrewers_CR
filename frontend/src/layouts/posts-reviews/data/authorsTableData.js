@@ -1,13 +1,11 @@
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function data() {
   const Author = ({ image, name, email }) => (
@@ -21,392 +19,57 @@ export default function data() {
       </MDBox>
     </MDBox>
   );
-  const navigate = useNavigate();
 
-  const handleClickPosts = () => {
-    navigate("/posts_Reviews/Posts");
-  };
+  const [usuarios, setUsuarios] = useState([]);
 
-  const handleClickReviews = () => {
-    navigate("/posts_Reviews/Reviews");
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(
+        `http://localhost:5000/usuario/GetAllUsersPostsReviews`
+      );
+      let data = res.data;
+      setUsuarios(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
   return {
     columns: [
-      { Header: "Usuario", accessor: "author", width: "45%", align: "left" },
+      { Header: "Usuario", accessor: "user", width: "45%", align: "left" },
       { Header: "Publicaciones", accessor: "posts", align: "center" },
       { Header: "Reseñas", accessor: "reviews", align: "center" },
     ],
 
-    rows: [
-      {
-        author: (
-          <Author
-            image={team2}
-            name="John Michael"
-            email="john@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="habilitado"
-              color="success"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Alexa Liras"
-            email="alexa@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Laurent Perrier"
-            email="laurent@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Michael Levi"
-            email="michael@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Richard Gran"
-            email="richard@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team2}
-            name="John Michael"
-            email="john@creative-tim.com"
-          />
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge
-              badgeContent="habilitado"
-              color="success"
-              variant="gradient"
-              size="sm"
-            />
-          </MDBox>
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Alexa Liras"
-            email="alexa@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Laurent Perrier"
-            email="laurent@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Michael Levi"
-            email="michael@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team3}
-            name="Richard Gran"
-            email="richard@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-      {
-        author: (
-          <Author
-            image={team4}
-            name="Miriam Eric"
-            email="miriam@creative-tim.com"
-          />
-        ),
-        posts: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickPosts}
-          >
-            Ver
-          </MDButton>
-        ),
-        reviews: (
-          <MDButton
-            color="secondary"
-            size="small"
-            variant="text"
-            onClick={handleClickReviews}
-          >
-            Ver
-          </MDButton>
-        ),
-      },
-    ],
+    rows: usuarios.map((usuario) => ({
+      user: (
+        <Author
+          image={usuario.fotoDePerfil}
+          name={usuario.nombre}
+          email={usuario.correo}
+        />
+      ),
+      posts: (
+        <MDButton
+          color="secondary"
+          size="small"
+          variant="text"
+          component={Link}
+          to={`/posts_Reviews/Posts/${usuario.id}`}
+        >
+          Ver
+        </MDButton>
+      ),
+      reviews: (
+        <MDButton
+          color="secondary"
+          size="small"
+          variant="text"
+          component={Link}
+          to={`/posts_Reviews/Reviews/${usuario.id}`}
+        >
+          Ver
+        </MDButton>
+      ),
+    })),
   };
 }

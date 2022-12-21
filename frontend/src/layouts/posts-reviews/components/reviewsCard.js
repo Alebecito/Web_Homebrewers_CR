@@ -10,38 +10,56 @@ import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 import ReactStars from "react-rating-stars-component";
+import MDBox from "components/MDBox";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function ReviewsCard() {
+export default function ReviewsCard({ title, date, rating, description, to, reviewId }) {
   const handleDelete = () => {
     alert("Reseña eliminada");
   };
 
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(
+        `http://localhost:5000/usuario/GetUserEmail/14c942dc-8002-11ed-9b69-000d3a994565`
+        // `http://localhost:5000/usuario/GetUserEmail/${to}`
+      );
+      let data = res.data;
+      setEmail(data[0].correo);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 350 }}>
       <CardHeader
         avatar={<Avatar sx={{ bgcolor: red }} aria-label="review"></Avatar>}
-        title="Lorem ipsum dolor sit amet, consectetur."
-        subheader="September 14, 2016"
+        title={title}
+        subheader={date}
       />
       <CardContent>
+        <MDTypography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontWeight: "bold" }}
+        >
+          <MDBox sx={{ fontWeight: "bold" }}>Dirigida a: {email}</MDBox>
+        </MDTypography>
         <ReactStars
           count={5}
           size={24}
           activeColor="#ffd700"
-          value={4}
-          onChange={ratingChanged}
+          value={rating}
+          edit={false}
         />
-        <MDTypography variant="body2" color="text.secondary">
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </MDTypography>
+        <MDBox sx={{ overflowY: "scroll", height: "250px" }}>
+          <MDTypography variant="body2" color="text.secondary">
+            {description}
+          </MDTypography>
+        </MDBox>
       </CardContent>
 
       <CardActions disableSpacing>

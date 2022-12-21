@@ -15,7 +15,8 @@ import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 
-export default function PostsCard() {
+export default function PostsCard({ title, description, price, date, likes, comments, image, postId}) {
+  
   const handleDelete = () => {
     alert("delete");
   };
@@ -24,8 +25,8 @@ export default function PostsCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={<Avatar sx={{ bgcolor: red }} aria-label="recipe"></Avatar>}
-        title="Lorem ipsum dolor sit amet, consectetur."
-        subheader="September 14, 2016"
+        title={title}
+        subheader={date}
       />
       <CardMedia
         component="img"
@@ -35,15 +36,15 @@ export default function PostsCard() {
           l: 10,
         }}
         height="194"
-        src="https://labuenacheve.com/wp-content/uploads/2020/09/PORTADAS-WORDPRESS-16.png"
+        src={image}
         alt="Post"
       />
       <CardContent>
         <MDTypography variant="body2" color="text.secondary">
-          Lúpulo de buena calidad para la elaboración de cerveza artesanal.
+          {description}
         </MDTypography>
-        <MDTypography variant="h6">Precio expuesto: ₡ 10000</MDTypography>
-        <MDTypography variant="h6">Fecha de caducidad: 2021-12-31</MDTypography>
+        <MDTypography variant="h6">Precio expuesto: ₡ {price}</MDTypography>
+        <MDTypography variant="h6">Fecha de caducidad: {date}</MDTypography>
       </CardContent>
       <CardActions disableSpacing>
         <Grid container direction="row" alignItems="center">
@@ -52,7 +53,7 @@ export default function PostsCard() {
               <FavoriteIcon />
             </IconButton>
           </Grid>
-          <Grid item>50</Grid>
+          <Grid item>{likes}</Grid>
         </Grid>
         <Grid item>
           <Link to="/posts_Reviews/Posts_Comments">
@@ -61,7 +62,7 @@ export default function PostsCard() {
             </IconButton>
           </Link>
         </Grid>
-        <Grid item>20</Grid>
+        <Grid item>{comments}</Grid>
         <MDButton size="large" iconOnly="true" onClick={handleDelete}>
           <Icon style={{ color: "#FF0000" }}>delete</Icon>
         </MDButton>

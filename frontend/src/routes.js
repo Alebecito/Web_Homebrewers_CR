@@ -38,11 +38,11 @@ const routes = [
     component: <Inventory />,
   },
   {
-    route: "/posts_Reviews/Posts",
+    route: "/posts_Reviews/Posts/:id",
     component: <Posts />,
   },
   {
-    route: "/posts_Reviews/Reviews",
+    route: "/posts_Reviews/Reviews/:id",
     component: <Reviews />,
   },
   {
