@@ -7,11 +7,9 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 function OwnReportInfoCard({
-  title,
+  reportID,
   description,
   info,
-  social,
-  action,
   shadow,
 }) {
   const labels = [];
@@ -69,7 +67,7 @@ function OwnReportInfoCard({
           fontWeight="medium"
           textTransform="capitalize"
         >
-          {title}
+          ID del Reporte: {reportID}
         </MDTypography>
         <MDTypography variant="body2" color="secondary">
           <Tooltip
@@ -93,11 +91,11 @@ function OwnReportInfoCard({
           fontWeight="medium"
           textTransform="capitalize"
         >
-          {title}
+          Descripción:
         </MDTypography>
       </MDBox>
       <MDBox p={2}>
-        <MDBox mb={2} lineHeight={1}>
+        <MDBox mb={2} lineHeight={1} width="500px">
           <MDTypography variant="button" color="text" fontWeight="light">
             {description}
           </MDTypography>
@@ -121,7 +119,6 @@ OwnReportInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   info: PropTypes.objectOf(PropTypes.string).isRequired,
-  social: PropTypes.arrayOf(PropTypes.object).isRequired,
   action: PropTypes.shape({
     route: PropTypes.string.isRequired,
     tooltip: PropTypes.string.isRequired,

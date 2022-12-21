@@ -1,15 +1,31 @@
 import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
 import MDBox from "components/MDBox";
 import DashboardLayout from "components/DashboardLayout";
 import DashboardNavbar from "components/DashboardNavbar";
 import OwnReportInfoCard from "../components/ownReportInfoCard";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Own_Reports() {
+  const [reports, setReports] = useState([]);
+  const adminID = JSON.parse(localStorage.getItem("user"));
 
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(
+        `http://localhost:5000/reportes/getAllReportsFromAnAdmin/${adminID}`
+      );
+      let data = res.data;
+      setReports(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
-
+  const parseDate = (date) => {
+    let dateArray = date.split("T");
+    let dateParsed = dateArray[0];
+    return dateParsed;
+  };
 
   return (
     <DashboardLayout>
@@ -17,20 +33,20 @@ function Own_Reports() {
       <MDBox mb={2} />
       <MDBox mt={5} mb={3}>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-            <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
-            <OwnReportInfoCard
-              title="Reporte"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
-              info={{
-                De: "Alec M. Thompson",
-                Para: "214124",
-                "Tipo de Reporte": "Publicación",
-                Fecha: "2021-10-10",
-              }}
-            />
-            <Divider orientation="vertical" sx={{ mx: 0 }} />
-          </Grid>
+          {reports.map((report) => (
+            <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
+              <OwnReportInfoCard
+                reportID={report.reporteGUID}
+                description={report.descripcion}
+                info={{
+                  De: report.deGUID,
+                  Para: report.haciaGUID,
+                  "Tipo de Reporte": report.tipoReporte,
+                  Fecha: parseDate(report.fecha),
+                }}
+              />
+            </Grid>
+          ))}
         </Grid>
       </MDBox>
     </DashboardLayout>

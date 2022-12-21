@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
@@ -10,16 +9,15 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-function ReportInfoCard({ title, description, info, social, action, shadow }) {
+function ReportInfoCard({ reportID, description, info, shadow }) {
   const labels = [];
   const values = [];
-  const { socialMediaColors } = colors;
-  const { size } = typography;
   const [admin, setAdmin] = useState("");
   const [open, setOpen] = useState(false);
+  const [usuarios, setUsuarios] = useState([]);
 
   const handleChange = (event) => {
     setAdmin(event.target.value);
@@ -32,6 +30,15 @@ function ReportInfoCard({ title, description, info, social, action, shadow }) {
       alert(`Reporte asignado a ${admin}`);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let res = await axios.get(`http://localhost:5000/usuario/getAdmins`);
+      let data = res.data;
+      setUsuarios(data);
+    };
+    fetchData().catch(console.error);
+  }, []);
 
   // Convert this form `objectKey` of the object key in to this `object key`
   Object.keys(info).forEach((el) => {
@@ -81,7 +88,7 @@ function ReportInfoCard({ title, description, info, social, action, shadow }) {
           fontWeight="medium"
           textTransform="capitalize"
         >
-          {title}
+          ID del Reporte: {reportID}
         </MDTypography>
         <MDTypography variant="body2" color="secondary">
           <Tooltip
@@ -105,11 +112,11 @@ function ReportInfoCard({ title, description, info, social, action, shadow }) {
           fontWeight="medium"
           textTransform="capitalize"
         >
-          {title}
+          Descripción:
         </MDTypography>
       </MDBox>
       <MDBox p={2}>
-        <MDBox mb={2} lineHeight={1}>
+        <MDBox mb={2} lineHeight={1} width="500px">
           <MDTypography variant="button" color="text" fontWeight="light">
             {description}
           </MDTypography>
@@ -129,9 +136,9 @@ function ReportInfoCard({ title, description, info, social, action, shadow }) {
               onChange={handleChange}
               sx={{ height: "50px", left: "-10px" }}
             >
-              <MenuItem value={"Admin1"}>Admin1</MenuItem>
-              <MenuItem value={"Admin2"}>Admin2</MenuItem>
-              <MenuItem value={"Admin3"}>Admin3</MenuItem>
+              {usuarios.map((admin) => (
+                <MenuItem value={admin.nombre}>{admin.nombre}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </MDBox>
