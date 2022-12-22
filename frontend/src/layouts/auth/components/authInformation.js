@@ -25,29 +25,40 @@ function AuthInformation() {
   return (
     <div style={{ position: "absolute", left: "350px" }}>
       <Card id="delete-account">
-        <MDBox pt={3} px={2}>
+        <MDBox pt={3} px={2} width="925px">
           <MDTypography variant="h6" fontWeight="medium">
             Usuarios por autenticar
           </MDTypography>
         </MDBox>
-        <MDBox pt={1} pb={2} px={2}>
+        {usuarios.length === 0 ? (
           <MDBox
-            component="ul"
-            display="flex"
-            flexDirection="column"
-            p={0}
-            m={0}
+            width="925px"
+            pt={1}
+            pb={2}
+            px={2}
           >
-            {usuarios.map((usuario) => (
-              <AuthBox
-                name={usuario.nombre}
-                email={usuario.correo}
-                image={usuario.cedula}
-                registrationDate={parseDate(usuario.fechaRegistro)}
-              />
-            ))}
+            <MDTypography>No hay usuarios por autenticar</MDTypography>
           </MDBox>
-        </MDBox>
+        ) : (
+          <MDBox pt={1} pb={2} px={2}>
+            <MDBox
+              component="ul"
+              display="flex"
+              flexDirection="column"
+              p={0}
+              m={0}
+            >
+              {usuarios.map((usuario) => (
+                <AuthBox
+                  name={usuario.nombre}
+                  email={usuario.correo}
+                  image={usuario.cedula}
+                  registrationDate={parseDate(usuario.fechaRegistro)}
+                />
+              ))}
+            </MDBox>
+          </MDBox>
+        )}
       </Card>
     </div>
   );
