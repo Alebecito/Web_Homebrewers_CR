@@ -56,7 +56,7 @@ export default function PostsCard({ title, description, price, date, likes, comm
           <Grid item>{likes}</Grid>
         </Grid>
         <Grid item>
-          <Link to="/posts_Reviews/Posts_Comments">
+          <Link to={`/posts_Reviews/Posts_Comments/${postId}`}>
             <IconButton aria-label="see comments">
               <CommensIcon />
             </IconButton>

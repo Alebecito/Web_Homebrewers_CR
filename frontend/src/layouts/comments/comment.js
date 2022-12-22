@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Comment = ({ comments }) => {
-  const handleDelete = () => {
+  const handleDelete = (commentID) => {
+    console.log(commentID);
     alert("delete");
   };
 
@@ -43,7 +44,7 @@ const Comment = ({ comments }) => {
               <ListItemText
                 primary={
                   <MDTypography className={classes.fonts}>
-                    {comment.name}
+                    {comment.deUsuarioGUID}
                   </MDTypography>
                 }
                 secondary={
@@ -54,13 +55,13 @@ const Comment = ({ comments }) => {
                       className={classes.inline}
                       color="textPrimary"
                     >
-                      {comment.date}
+                      Agregar fecha{comment.fecha}
                     </MDTypography>
-                    {` - ${comment.body}`}
+                    {` - ${comment.contenido}`}
                   </>
                 }
               />
-              <MDButton size="sm" iconOnly="true" onClick={handleDelete}>
+              <MDButton size="sm" iconOnly="true" onClick={() => handleDelete(comment.comentariosGUID)}>
                 <Icon style={{ color: "#FF0000" }}>delete</Icon>
               </MDButton>
             </ListItem>

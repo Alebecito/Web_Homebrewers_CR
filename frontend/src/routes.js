@@ -46,7 +46,7 @@ const routes = [
     component: <Reviews />,
   },
   {
-    route: "/posts_Reviews/Posts_Comments",
+    route: "/posts_Reviews/Posts_Comments/:id",
     component: <Posts_Comments />,
   },
   {

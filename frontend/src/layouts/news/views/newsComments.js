@@ -2,7 +2,7 @@ import React from "react";
 import DashboardLayout from "components/DashboardLayout";
 import DashboardNavbar from "components/DashboardNavbar";
 import MDBox from "components/MDBox";
-import Comments from "layouts/news/components/commentFeed";
+import Comments from "../../comments/commentFeed";
 
 const CommentExampleComment = () => (
   <DashboardLayout>
