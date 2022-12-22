@@ -31,12 +31,7 @@ function AuthInformation() {
           </MDTypography>
         </MDBox>
         {usuarios.length === 0 ? (
-          <MDBox
-            width="925px"
-            pt={1}
-            pb={2}
-            px={2}
-          >
+          <MDBox width="925px" pt={1} pb={2} px={2}>
             <MDTypography>No hay usuarios por autenticar</MDTypography>
           </MDBox>
         ) : (

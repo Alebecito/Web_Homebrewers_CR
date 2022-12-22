@@ -31,6 +31,12 @@ const Comment = ({ comments }) => {
     alert("delete");
   };
 
+  const parseDate = (date) => {
+    let dateArray = date.split("T");
+    let dateParsed = dateArray[0];
+    return dateParsed;
+  };
+
   const classes = useStyles();
   return (
     <List className={classes.root}>
@@ -39,12 +45,12 @@ const Comment = ({ comments }) => {
           <React.Fragment key={comment.id}>
             <ListItem key={comment.id} alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar alt="avatar" src="/assets/images/bruce-mars.jpg" />
+                <Avatar alt="avatar" src={comment.fotoDePerfil} />
               </ListItemAvatar>
               <ListItemText
                 primary={
                   <MDTypography className={classes.fonts}>
-                    {comment.deUsuarioGUID}
+                    {comment.nombre}
                   </MDTypography>
                 }
                 secondary={
@@ -55,13 +61,17 @@ const Comment = ({ comments }) => {
                       className={classes.inline}
                       color="textPrimary"
                     >
-                      Agregar fecha{comment.fecha}
+                      {parseDate(comment.fecha)}
                     </MDTypography>
                     {` - ${comment.contenido}`}
                   </>
                 }
               />
-              <MDButton size="sm" iconOnly="true" onClick={() => handleDelete(comment.comentariosGUID)}>
+              <MDButton
+                size="sm"
+                iconOnly="true"
+                onClick={() => handleDelete(comment.comentariosGUID)}
+              >
                 <Icon style={{ color: "#FF0000" }}>delete</Icon>
               </MDButton>
             </ListItem>

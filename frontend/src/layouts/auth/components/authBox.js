@@ -69,7 +69,7 @@ function AuthBox({ name, email, image, registrationDate, noGutter }) {
               {email}
             </MDTypography>
           </MDTypography>
-          < br />
+          <br />
           <MDTypography variant="caption" color="text">
             Fecha solicitud:&nbsp;&nbsp;&nbsp;
             <MDTypography variant="caption" fontWeight="medium">
@@ -77,7 +77,7 @@ function AuthBox({ name, email, image, registrationDate, noGutter }) {
             </MDTypography>
           </MDTypography>
         </MDBox>
-       
+
         <div style={{ paddingLeft: "300px" }}>
           <CardMedia
             component="img"
@@ -104,7 +104,7 @@ AuthBox.defaultProps = {
 // Typechecking props for the Bill
 AuthBox.propTypes = {
   name: PropTypes.string.isRequired,
-  
+
   email: PropTypes.string.isRequired,
 
   noGutter: PropTypes.bool,
