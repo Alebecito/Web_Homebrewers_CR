@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import React from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -10,26 +9,24 @@ import MDButton from "components/MDButton";
 import axios from "axios";
 
 const News_Details = () => {
-  const navigate = useNavigate();
   const initialValues = {
     title: "",
     description: "",
     publishDate: "2022-12-14",
   };
 
-
   const addNew = async (tituloP, descripcionP) => {
-    console.log("aqui")
-    let res = await axios.post("http://localhost:5000/publicacionesnoticias/addnew",
-     {
-      titulo: tituloP,
-      descripcion: descripcionP,
-      
-     });
+    console.log("aqui");
+    let res = await axios.post(
+      "http://localhost:5000/publicacionesnoticias/addnew",
+      {
+        titulo: tituloP,
+        descripcion: descripcionP,
+      }
+    );
 
     alert("Imagen agregada");
-  }
-
+  };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -51,10 +48,8 @@ const News_Details = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={ (data) => {
-             addNew(data.title, data.description);
-             
-
+            onSubmit={(data) => {
+              addNew(data.title, data.description);
             }}
           >
             {({
