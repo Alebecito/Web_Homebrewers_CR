@@ -60,7 +60,7 @@ export default function Posts() {
                     likes={post.cantidadDeLikes}
                     comments={post.cantidadDeComentarios}
                     image={post.fotoPublicacionNoticia}
-                    postId={post.productoGUID}
+                    postId={post.publicacionNoticiaGUID}
                   />
                 </Grid>
               ))}

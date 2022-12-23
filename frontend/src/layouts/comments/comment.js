@@ -11,6 +11,7 @@ import {
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import Icon from "@material-ui/core/Icon";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,9 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Comment = ({ comments }) => {
-  const handleDelete = (commentID) => {
-    console.log(commentID);
-    alert("delete");
+  const handleDelete = async (commentID) => {
+    let res = await axios.delete(`http://localhost:5000/comentarios/deleteComment/${commentID}`);
+
+    alert("Comentario eliminado");
+    location.reload(false);
   };
 
   const parseDate = (date) => {

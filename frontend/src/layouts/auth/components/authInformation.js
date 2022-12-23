@@ -48,6 +48,7 @@ function AuthInformation() {
                   name={usuario.nombre}
                   email={usuario.correo}
                   image={usuario.cedula}
+                  userId={usuario.id}
                   registrationDate={parseDate(usuario.fechaRegistro)}
                 />
               ))}

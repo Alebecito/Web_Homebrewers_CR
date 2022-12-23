@@ -22,8 +22,13 @@ export default function ReviewsCard({
   to,
   reviewId,
 }) {
-  const handleDelete = () => {
-    alert("Reseña eliminada");
+  const handleDelete = async () => {
+    let res = await axios.delete(`http://localhost:5000/resena/deleteReview/${reviewId}`);
+
+    alert("Reseña "+title+" eliminada");
+  
+   
+    location.reload(false);
   };
 
   return (

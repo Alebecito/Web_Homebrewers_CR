@@ -5,17 +5,22 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { useMaterialUIController } from "context";
+import axios from "axios";
 
-function AuthBox({ name, email, image, registrationDate, noGutter }) {
+function AuthBox({ name, email, image, registrationDate, noGutter, userId }) {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
   const handleAccept = () => {
-    alert("aceptar");
+    let res = axios.put(`http://localhost:5000/usuario/authorizeUser/${userId}`);
+    alert("Usuario " + name + " autorizado");
+    location.reload();
   };
 
   const handleDeny = () => {
-    alert("rechazar");
+    let res = axios.delete(`http://localhost:5000/usuario/deleteUser/${userId}`);
+    alert("Usuario " + name + " rechazado");
+    location.reload();
   };
 
   return (

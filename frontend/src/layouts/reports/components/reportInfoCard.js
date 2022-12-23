@@ -12,6 +12,7 @@ import MDTypography from "components/MDTypography";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 function ReportInfoCard({ reportID, description, info, shadow }) {
   const labels = [];
   const values = [];
@@ -24,10 +25,12 @@ function ReportInfoCard({ reportID, description, info, shadow }) {
     setOpen(true);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (open == true) {
       setOpen(false);
-      alert(`Reporte asignado a ${admin}`);
+      let res = await axios.put(`http://localhost:5000/reportes/assignReport/${reportID}/${admin}`);
+      alert(`El Reporte `+reportID+` se ha asignado a ${admin}`);
+      location.reload(false);
     }
   };
 
@@ -137,7 +140,7 @@ function ReportInfoCard({ reportID, description, info, shadow }) {
               sx={{ height: "50px", left: "-10px" }}
             >
               {usuarios.map((admin) => (
-                <MenuItem value={admin.nombre}>{admin.nombre}</MenuItem>
+                <MenuItem value={admin.usuarioGUID}>{admin.nombre}</MenuItem>
               ))}
             </Select>
           </FormControl>

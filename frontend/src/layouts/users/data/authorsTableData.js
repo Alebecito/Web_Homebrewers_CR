@@ -46,25 +46,22 @@ export default function data() {
   const [warningSB, setWarningSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
 
-  const openSuccessSB = () => {
-    setSuccessSB(true);
-    setTimeout(() => {
-      setSuccessSB(false);
-    }, 3000);
+  const openSuccessSB = (idUsuario) => {
+    let res = axios.put(`http://localhost:5000/usuario/changeUserState/${idUsuario}/habilitado`);
+    alert("Se ha habilitado al usuario "+idUsuario);
+    location.reload(false);
   };
 
-  const openWarningSB = () => {
-    setWarningSB(true);
-    setTimeout(() => {
-      setWarningSB(false);
-    }, 3000);
+  const openWarningSB = (idUsuario) => {
+    let res = axios.put(`http://localhost:5000/usuario/changeUserState/${idUsuario}/deshabilitado`);
+    alert("Se ha deshabilitado el usuario "+idUsuario);
+    location.reload(false);
   };
 
-  const openErrorSB = () => {
-    setErrorSB(true);
-    setTimeout(() => {
-      setErrorSB(false);
-    }, 3000);
+  const openErrorSB = (idUsuario) => {
+    let res = axios.delete(`http://localhost:5000/usuario/deleteUser/${idUsuario}`);
+    alert("Se ha eliminado el usuario "+idUsuario);
+    location.reload(false);
   };
 
   const closeErrorSB = () => setErrorSB(false);
@@ -109,6 +106,7 @@ export default function data() {
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}
+      
       bgWhite
     />
   );
@@ -166,7 +164,7 @@ export default function data() {
             color="error"
             size="small"
             variant="text"
-            onClick={openErrorSB}
+            onClick={() => openErrorSB(usuario.id)}
           >
             Eliminar
           </MDButton>
@@ -178,7 +176,7 @@ export default function data() {
                 color="warning"
                 size="small"
                 variant="text"
-                onClick={openWarningSB}
+                onClick={() => openWarningSB(usuario.id)}
               >
                 Deshabilitar
               </MDButton>
@@ -190,7 +188,7 @@ export default function data() {
                 color="success"
                 size="small"
                 variant="text"
-                onClick={openSuccessSB}
+                onClick={() => openSuccessSB(usuario.id)}
               >
                 Habilitar
               </MDButton>

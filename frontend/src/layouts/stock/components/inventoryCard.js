@@ -10,6 +10,7 @@ import MDTypography from "components/MDTypography";
 import { Grid } from "@mui/material";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
+import axios from "axios";
 
 export default function InventoryCard({
   title,
@@ -17,9 +18,15 @@ export default function InventoryCard({
   quantity,
   date,
   productImage,
+  productoId
 }) {
-  const handleDelete = () => {
-    alert("Eliminar producto del inventario");
+  const handleDelete = async () => {
+  
+    let res = await axios.delete(`http://localhost:5000/producto/deleteProduct/${productoId}`);
+    alert("Producto "+title+" eliminado del inventario");
+
+    location.reload(false);
+
   };
 
   return (

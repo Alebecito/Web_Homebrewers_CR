@@ -5,6 +5,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import axios from "axios";
 
 function OwnReportInfoCard({
   reportID,
@@ -16,7 +17,9 @@ function OwnReportInfoCard({
   const values = [];
 
   const handleClick = () => {
-    alert("Reporte resuelto!");
+    axios.put(`http://localhost:5000/reportes/closeTicket/${reportID}`);
+    alert(`Reporte ${reportID} marcado como resuelto`);
+    location.reload(false);
   };
 
   // Convert this form `objectKey` of the object key in to this `object key`

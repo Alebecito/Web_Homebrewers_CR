@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Own_Reports() {
   const [reports, setReports] = useState([]);
-  const adminID = JSON.parse(localStorage.getItem("user"));
+  const adminID = localStorage.getItem("user");
 
   useEffect(() => {
     const fetchData = async () => {

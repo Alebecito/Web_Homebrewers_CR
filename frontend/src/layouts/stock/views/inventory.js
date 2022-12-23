@@ -44,6 +44,7 @@ export default function Inventory() {
           {inventario.map((producto) => (
             <Grid item xs="auto" md="auto">
               <InventoryCard
+                productoId={producto.productoGUID}
                 title={producto.titulo}
                 description={producto.cuerpo}
                 quantity={producto.cantidad}

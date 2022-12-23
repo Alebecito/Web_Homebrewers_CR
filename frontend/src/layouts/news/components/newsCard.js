@@ -15,6 +15,7 @@ import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
+import axios from "axios";
 
 export default function NewsCard({
   title,
@@ -25,8 +26,12 @@ export default function NewsCard({
   comments,
   id,
 }) {
-  const handleDelete = () => {
-    alert("delete");
+  const handleDelete  = async () => {
+    
+    
+    let res = await axios.delete(`http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${id}`);
+    alert("Noticia: " +title+" eliminada");
+    location.reload(false);
   };
 
   return (

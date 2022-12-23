@@ -7,6 +7,7 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDBox from "components/MDBox";
 import MDButton from "components/MDButton";
+import axios from "axios";
 
 const News_Details = () => {
   const navigate = useNavigate();
@@ -15,6 +16,20 @@ const News_Details = () => {
     description: "",
     publishDate: "2022-12-14",
   };
+
+
+  const addNew = async (tituloP, descripcionP) => {
+    console.log("aqui")
+    let res = await axios.post("http://localhost:5000/publicacionesnoticias/addnew",
+     {
+      titulo: tituloP,
+      descripcion: descripcionP,
+      
+     });
+
+    alert("Imagen agregada");
+  }
+
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -36,9 +51,10 @@ const News_Details = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(data) => {
-              alert("Noticia publicada");
-              navigate("/news", { replace: true });
+            onSubmit={ (data) => {
+             addNew(data.title, data.description);
+             
+
             }}
           >
             {({
