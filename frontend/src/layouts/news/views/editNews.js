@@ -26,8 +26,10 @@ export default function Edit_News(props) {
   const [datos, setDatos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [img, setImg] = useState("");
+  const [newImg, setNewImg] = useState("");
   const inputReference = createRef();
   const navigate = useNavigate();
+  const formData = new FormData();
 
   const parseDate = (date) => {
     let dateArray = date.split("T");
@@ -55,13 +57,11 @@ export default function Edit_News(props) {
   };
 
   const imageHandler = async (e) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setImg(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    const newImage = e.target.files[0];
+    if (newImage) {
+      setImg(URL.createObjectURL(newImage));
+    }
+    setNewImg(newImage);
   };
 
   const initialValues = {
@@ -71,23 +71,20 @@ export default function Edit_News(props) {
   };
 
   const updateNew = async (tituloP, descripcionP, fechaP) => {
+    console.log(newImg);
+    formData.append("id", id);
+    formData.append("titulo", tituloP);
+    formData.append("descripcion", descripcionP);
+    formData.append("fecha", fechaP);
+    formData.append("imagen", newImg);
+    console.log(formData);
+
     let res = await axios.put(
       "http://localhost:5000/publicacionesnoticias/updateNew",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          id: id,
-          titulo: tituloP,
-          descripcion: descripcionP,
-          fecha: fechaP,
-          imagen: img,
-        },
-      }
+      formData
     );
-    alert("Imagen agregada");
-    // navigate("/news", { replace: true });
+    alert("Noticia modificada");
+    navigate("/news", { replace: true });
   };
 
   const validationSchema = Yup.object().shape({
