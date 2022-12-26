@@ -23,40 +23,38 @@ function AuthInformation() {
   };
 
   return (
-    <div style={{ position: "absolute", left: "350px" }}>
-      <Card id="delete-account">
-        <MDBox pt={3} px={2} width="925px">
-          <MDTypography variant="h6" fontWeight="medium">
-            Usuarios por autenticar
-          </MDTypography>
+    <Card id="delete-account">
+      <MDBox pt={3} px={2}>
+        <MDTypography variant="h6" fontWeight="medium">
+          Usuarios por autenticar
+        </MDTypography>
+      </MDBox>
+      {usuarios.length === 0 ? (
+        <MDBox pt={1} pb={2} px={2}>
+          <MDTypography>No hay usuarios por autenticar</MDTypography>
         </MDBox>
-        {usuarios.length === 0 ? (
-          <MDBox width="925px" pt={1} pb={2} px={2}>
-            <MDTypography>No hay usuarios por autenticar</MDTypography>
+      ) : (
+        <MDBox pt={1} pb={2} px={2}>
+          <MDBox
+            component="ul"
+            display="flex"
+            flexDirection="column"
+            p={0}
+            m={0}
+          >
+            {usuarios.map((usuario) => (
+              <AuthBox
+                name={usuario.nombre}
+                email={usuario.correo}
+                image={usuario.cedula}
+                userId={usuario.id}
+                registrationDate={parseDate(usuario.fechaRegistro)}
+              />
+            ))}
           </MDBox>
-        ) : (
-          <MDBox pt={1} pb={2} px={2}>
-            <MDBox
-              component="ul"
-              display="flex"
-              flexDirection="column"
-              p={0}
-              m={0}
-            >
-              {usuarios.map((usuario) => (
-                <AuthBox
-                  name={usuario.nombre}
-                  email={usuario.correo}
-                  image={usuario.cedula}
-                  userId={usuario.id}
-                  registrationDate={parseDate(usuario.fechaRegistro)}
-                />
-              ))}
-            </MDBox>
-          </MDBox>
-        )}
-      </Card>
-    </div>
+        </MDBox>
+      )}
+    </Card>
   );
 }
 

@@ -11,7 +11,15 @@ function Auth() {
       <MDBox mt={8}>
         <MDBox mb={3}></MDBox>
         <MDBox mb={3}>
-          <Grid container spacing={3}>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Grid item xs={12} md={7}>
               <AuthInformation />
             </Grid>

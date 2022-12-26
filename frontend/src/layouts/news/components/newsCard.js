@@ -26,11 +26,11 @@ export default function NewsCard({
   comments,
   id,
 }) {
-  const handleDelete  = async () => {
-    
-    
-    let res = await axios.delete(`http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${id}`);
-    alert("Noticia: " +title+" eliminada");
+  const handleDelete = async () => {
+    let res = await axios.delete(
+      `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${id}`
+    );
+    alert("Noticia: " + title + " eliminada");
     location.reload(false);
   };
 

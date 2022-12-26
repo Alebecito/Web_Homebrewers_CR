@@ -20,6 +20,7 @@ import {
   Divider,
   Container,
 } from "@material-ui/core";
+import "./news_image.css";
 
 export default function Edit_News(props) {
   const { id } = useParams();
@@ -37,7 +38,7 @@ export default function Edit_News(props) {
     return dateParsed;
   };
 
-  useEffect(() => {
+  useEffect((e) => {
     const fetchData = async () => {
       setLoading(true);
       let res = await axios.get(
@@ -71,13 +72,18 @@ export default function Edit_News(props) {
   };
 
   const updateNew = async (tituloP, descripcionP, fechaP) => {
-    console.log(newImg);
     formData.append("id", id);
     formData.append("titulo", tituloP);
     formData.append("descripcion", descripcionP);
     formData.append("fecha", fechaP);
-    formData.append("imagen", newImg);
-    console.log(formData);
+
+    if (newImg) {
+      formData.append("imagen", newImg);
+      formData.append("modified", true);
+    } else {
+      formData.append("imagen", img);
+      formData.append("modified", false);
+    }
 
     let res = await axios.put(
       "http://localhost:5000/publicacionesnoticias/updateNew",

@@ -83,7 +83,7 @@ function AuthBox({ name, email, image, registrationDate, noGutter, userId }) {
           </MDTypography>
         </MDBox>
 
-        <div style={{ paddingLeft: "300px" }}>
+        <div style={{ paddingLeft: "300px", display: "flex" }}>
           <CardMedia
             component="img"
             sx={{
