@@ -17,7 +17,7 @@ function ProfilesList({ title, profiles, shadow }) {
   };
 
   const filteredProfiles = profiles.filter((profile) => {
-    return profile.usuarioGUID.toLowerCase().startsWith(search.toLowerCase());
+    return profile.usuarioGUID.toLowerCase().includes(search.toLowerCase());
   });
 
   const renderProfiles =
