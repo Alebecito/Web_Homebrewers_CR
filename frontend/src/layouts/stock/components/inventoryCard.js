@@ -18,15 +18,15 @@ export default function InventoryCard({
   quantity,
   date,
   productImage,
-  productoId
+  productoId,
 }) {
   const handleDelete = async () => {
-  
-    let res = await axios.delete(`http://localhost:5000/producto/deleteProduct/${productoId}`);
-    alert("Producto "+title+" eliminado del inventario");
+    let res = await axios.delete(
+      `http://localhost:5000/producto/deleteProduct/${productoId}`
+    );
+    alert("Producto " + title + " eliminado del inventario");
 
     location.reload(false);
-
   };
 
   return (

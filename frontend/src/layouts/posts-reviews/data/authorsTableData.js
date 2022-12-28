@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function data() {
-  const User = ({ image, name, email, id }) => (
+  const User = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
       <MDBox ml={2} lineHeight={1}>
@@ -16,12 +16,6 @@ export default function data() {
           {name}
         </MDTypography>
         <MDTypography variant="caption">{email}</MDTypography>
-        <br />
-        <MDTypography fontWeight="bold" variant="caption">
-          {" "}
-          ID de Usuario:{" "}
-        </MDTypography>
-        <MDTypography variant="caption">{id}</MDTypography>
       </MDBox>
     </MDBox>
   );
@@ -42,6 +36,7 @@ export default function data() {
   return {
     columns: [
       { Header: "Usuario", accessor: "user", width: "45%", align: "left" },
+      { Header: "ID", accessor: "id", align: "center" },
       { Header: "Publicaciones", accessor: "posts", align: "center" },
       { Header: "Reseñas", accessor: "reviews", align: "center" },
     ],
@@ -52,9 +47,9 @@ export default function data() {
           image={usuario.fotoDePerfil}
           name={usuario.nombre}
           email={usuario.correo}
-          id={usuario.id}
         />
       ),
+      id: `${usuario.id}`,
       posts: (
         <MDButton
           color="secondary"

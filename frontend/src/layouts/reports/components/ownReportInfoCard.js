@@ -7,12 +7,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import axios from "axios";
 
-function OwnReportInfoCard({
-  reportID,
-  description,
-  info,
-  shadow,
-}) {
+function OwnReportInfoCard({ reportID, description, info, shadow }) {
   const labels = [];
   const values = [];
 

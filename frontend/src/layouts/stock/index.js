@@ -6,29 +6,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Stock() {
-
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.get(`http://localhost:5000/usuario/GetAllUsersInfo`);
+      let res = await axios.get(
+        `http://localhost:5000/usuario/GetAllUsersInfo`
+      );
       let data = res.data;
       setUsuarios(data);
     };
     fetchData().catch(console.error);
-    console.log(usuarios)
   }, []);
-
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mt={6}>
-        <ProfilesList
-          title="Usuarios"
-          profiles={usuarios}
-          shadow={false}
-        />
+        <ProfilesList title="Usuarios" profiles={usuarios} shadow={false} />
       </MDBox>
     </DashboardLayout>
   );

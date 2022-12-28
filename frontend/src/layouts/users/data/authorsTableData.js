@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function data() {
-  const User = ({ image, name, email, id }) => (
+  const User = ({ image, name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
       <MDBox ml={2} lineHeight={1}>
@@ -16,12 +16,6 @@ export default function data() {
           {name}
         </MDTypography>
         <MDTypography variant="caption">{email}</MDTypography>
-        <br />
-        <MDTypography fontWeight="bold" variant="caption">
-          {" "}
-          ID de Usuario:{" "}
-        </MDTypography>
-        <MDTypography variant="caption">{id}</MDTypography>
       </MDBox>
     </MDBox>
   );
@@ -47,20 +41,26 @@ export default function data() {
   const [errorSB, setErrorSB] = useState(false);
 
   const openSuccessSB = (idUsuario) => {
-    let res = axios.put(`http://localhost:5000/usuario/changeUserState/${idUsuario}/habilitado`);
-    alert("Se ha habilitado al usuario "+idUsuario);
+    let res = axios.put(
+      `http://localhost:5000/usuario/changeUserState/${idUsuario}/habilitado`
+    );
+    alert("Se ha habilitado al usuario " + idUsuario);
     location.reload(false);
   };
 
   const openWarningSB = (idUsuario) => {
-    let res = axios.put(`http://localhost:5000/usuario/changeUserState/${idUsuario}/deshabilitado`);
-    alert("Se ha deshabilitado el usuario "+idUsuario);
+    let res = axios.put(
+      `http://localhost:5000/usuario/changeUserState/${idUsuario}/deshabilitado`
+    );
+    alert("Se ha deshabilitado el usuario " + idUsuario);
     location.reload(false);
   };
 
   const openErrorSB = (idUsuario) => {
-    let res = axios.delete(`http://localhost:5000/usuario/deleteUser/${idUsuario}`);
-    alert("Se ha eliminado el usuario "+idUsuario);
+    let res = axios.delete(
+      `http://localhost:5000/usuario/deleteUser/${idUsuario}`
+    );
+    alert("Se ha eliminado el usuario " + idUsuario);
     location.reload(false);
   };
 
@@ -106,7 +106,6 @@ export default function data() {
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}
-      
       bgWhite
     />
   );
@@ -114,6 +113,7 @@ export default function data() {
   return {
     columns: [
       { Header: "Usuario", accessor: "user", width: "45%", align: "left" },
+      { Header: "ID", accessor: "id", align: "center" },
       { Header: "Estado", accessor: "status", align: "center" },
       { Header: "Fecha Registro", accessor: "date", align: "center" },
       { Header: "Acción", accessor: "action", align: "center" },
@@ -125,9 +125,9 @@ export default function data() {
           image={usuario.fotoDePerfil}
           name={usuario.nombre}
           email={usuario.correo}
-          id={usuario.id}
         />
       ),
+      id: `${usuario.id}`,
       status: (
         <MDBox ml={-1}>
           {usuario.estado === "habilitado" ? (

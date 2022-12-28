@@ -12,7 +12,6 @@ import MDTypography from "components/MDTypography";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 function ReportInfoCard({ reportID, description, info, shadow }) {
   const labels = [];
   const values = [];
@@ -28,8 +27,10 @@ function ReportInfoCard({ reportID, description, info, shadow }) {
   const handleClick = async () => {
     if (open == true) {
       setOpen(false);
-      let res = await axios.put(`http://localhost:5000/reportes/assignReport/${reportID}/${admin}`);
-      alert(`El Reporte `+reportID+` se ha asignado a ${admin}`);
+      let res = await axios.put(
+        `http://localhost:5000/reportes/assignReport/${reportID}/${admin}`
+      );
+      alert(`El Reporte ` + reportID + ` se ha asignado a ${admin}`);
       location.reload(false);
     }
   };

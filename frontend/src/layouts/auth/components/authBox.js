@@ -12,13 +12,17 @@ function AuthBox({ name, email, image, registrationDate, noGutter, userId }) {
   const { darkMode } = controller;
 
   const handleAccept = () => {
-    let res = axios.put(`http://localhost:5000/usuario/authorizeUser/${userId}`);
+    let res = axios.put(
+      `http://localhost:5000/usuario/authorizeUser/${userId}`
+    );
     alert("Usuario " + name + " autorizado");
     location.reload();
   };
 
   const handleDeny = () => {
-    let res = axios.delete(`http://localhost:5000/usuario/deleteUser/${userId}`);
+    let res = axios.delete(
+      `http://localhost:5000/usuario/deleteUser/${userId}`
+    );
     alert("Usuario " + name + " rechazado");
     location.reload();
   };

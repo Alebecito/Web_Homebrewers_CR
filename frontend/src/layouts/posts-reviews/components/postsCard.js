@@ -16,15 +16,23 @@ import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 import axios from "axios";
 
-export default function PostsCard({ title, description, price, date, likes, comments, image, postId}) {
-  
+export default function PostsCard({
+  title,
+  description,
+  price,
+  date,
+  likes,
+  comments,
+  image,
+  postId,
+}) {
   const handleDelete = async () => {
-    
-    let res = await axios.delete(`http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${postId}`);
+    let res = await axios.delete(
+      `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${postId}`
+    );
 
-    alert("Publicacion "+title+" eliminada");
-  
-   
+    alert("Publicacion " + title + " eliminada");
+
     location.reload(false);
   };
 
