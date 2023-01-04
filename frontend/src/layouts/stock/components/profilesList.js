@@ -52,6 +52,9 @@ function ProfilesList({ title, profiles, shadow }) {
             <MDTypography variant="caption" color="text">
               {correo}
             </MDTypography>
+            <MDTypography variant="caption" color="text">
+              ID: {usuarioGUID}
+            </MDTypography>
           </MDBox>
           <MDBox ml="auto">
             <MDButton
