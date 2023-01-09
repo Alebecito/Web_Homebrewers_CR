@@ -44,18 +44,31 @@ function Reports() {
         <Grid container spacing={1}>
           {reports.map((report) => (
             <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-              {report.tipoReporte !== "Usuario" || report.tipoReporte !== "Noticia" ? (
-                <ReportInfoCard
-                  reportID={report.reporteGUID}
-                  description={report.descripcion}
-                  info={{
-                    De: report.deGUID,
-                    Para: report.haciaGUID,
-                    "Tipo de Reporte": report.tipoReporte,
-                    "Dueño de elemento": report.realizadoPor,
-                    Fecha: parseDate(report.fecha),
-                  }}
-                />
+              {report.tipoReporte !== "Usuario" ? (
+                report.tipoReporte !== "Noticia" ? (
+                  <ReportInfoCard
+                    reportID={report.reporteGUID}
+                    description={report.descripcion}
+                    info={{
+                      De: report.deGUID,
+                      Para: report.haciaGUID,
+                      "Tipo de Reporte": report.tipoReporte,
+                      "Dueño de elemento": report.realizadoPor,
+                      Fecha: parseDate(report.fecha),
+                    }}
+                  />
+                ) : (
+                  <ReportInfoCard
+                    reportID={report.reporteGUID}
+                    description={report.descripcion}
+                    info={{
+                      De: report.deGUID,
+                      Para: report.haciaGUID,
+                      "Tipo de Reporte": report.tipoReporte,
+                      Fecha: parseDate(report.fecha),
+                    }}
+                  />
+                )
               ) : (
                 <ReportInfoCard
                   reportID={report.reporteGUID}
