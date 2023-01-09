@@ -61,6 +61,7 @@ export default function Posts() {
                     comments={post.cantidadDeComentarios}
                     image={post.fotoPublicacionNoticia}
                     postId={post.publicacionNoticiaGUID}
+                    fotoDePerfil={post.fotoDePerfil}
                   />
                 </Grid>
               ))}

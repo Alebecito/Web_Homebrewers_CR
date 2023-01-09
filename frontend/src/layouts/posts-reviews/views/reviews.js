@@ -59,6 +59,7 @@ export default function Reviews() {
                     description={review.cuerpo}
                     to={review.haciaGUID}
                     reviewId={review.reseñaGUID}
+                    fotoDePerfil={review.fotoDePerfil}
                   />
                 </Grid>
               ))}

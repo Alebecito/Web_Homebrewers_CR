@@ -11,7 +11,6 @@ import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 import ReactStars from "react-rating-stars-component";
 import MDBox from "components/MDBox";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ReviewsCard({
@@ -21,6 +20,7 @@ export default function ReviewsCard({
   description,
   to,
   reviewId,
+  fotoDePerfil,
 }) {
   const handleDelete = async () => {
     let res = await axios.delete(
@@ -35,19 +35,27 @@ export default function ReviewsCard({
   return (
     <Card sx={{ maxWidth: 345, minWidth: 350 }}>
       <CardHeader
-        avatar={<Avatar sx={{ bgcolor: red }} aria-label="review"></Avatar>}
+        avatar={
+          <Avatar
+            sx={{ bgcolor: red }}
+            aria-label="review"
+            src={fotoDePerfil}
+          ></Avatar>
+        }
         title={title}
         subheader={date}
       />
       <CardContent>
         <MDTypography
-          variant="body2"
+          variant="h6"
           color="text.secondary"
-          sx={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "regular" }}
         >
-          <MDBox sx={{ fontWeight: "bold" }}>
-            Dirigida a usuario con ID: {to}
-          </MDBox>
+          <MDBox sx={{ fontWeight: "bold" }}>ID:</MDBox>
+          <MDBox sx={{ fontWeight: "regular", pb: 1 }}> {reviewId} </MDBox>
+
+          <MDBox sx={{ fontWeight: "bold" }}>Dirigida a usuario con ID:</MDBox>
+          <MDBox sx={{ fontWeight: "regular" }}> {to} </MDBox>
         </MDTypography>
         <ReactStars
           count={5}

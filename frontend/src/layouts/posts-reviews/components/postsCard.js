@@ -25,6 +25,7 @@ export default function PostsCard({
   comments,
   image,
   postId,
+  fotoDePerfil,
 }) {
   const handleDelete = async () => {
     let res = await axios.delete(
@@ -39,7 +40,7 @@ export default function PostsCard({
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        avatar={<Avatar sx={{ bgcolor: red }} aria-label="recipe"></Avatar>}
+        avatar={<Avatar sx={{ bgcolor: red }} aria-label="recipe" src={fotoDePerfil} ></Avatar>}
         title={title}
         subheader={date}
       />
@@ -58,6 +59,7 @@ export default function PostsCard({
         <MDTypography variant="body2" color="text.secondary">
           {description}
         </MDTypography>
+        <MDTypography variant="h6">ID: {postId}</MDTypography>
         <MDTypography variant="h6">Precio expuesto: ₡ {price}</MDTypography>
         <MDTypography variant="h6">Fecha de caducidad: {date}</MDTypography>
       </CardContent>
