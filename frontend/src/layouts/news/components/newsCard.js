@@ -10,6 +10,7 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommensIcon from "@mui/icons-material/Comment";
 import MDTypography from "components/MDTypography";
+import MDBox from "components/MDBox";
 import Edit from "@mui/icons-material/Edit";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -48,6 +49,11 @@ export default function NewsCard({
         title={title}
         subheader={date}
       />
+
+      <MDTypography variant="h6">
+        <MDBox sx={{ textAlign: "center", maxWidth: "95%" }}>ID: {id}</MDBox>
+      </MDTypography>
+
       <CardMedia
         component="img"
         sx={{

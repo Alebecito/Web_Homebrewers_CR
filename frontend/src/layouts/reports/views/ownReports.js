@@ -35,7 +35,7 @@ function Own_Reports() {
         <Grid container spacing={1}>
           {reports.map((report) => (
             <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-              {report.tipoReporte !== "Usuario" ? (
+              {report.tipoReporte !== "Usuario" || report.tipoReporte !== "Noticia" ? (
                 <OwnReportInfoCard
                   reportID={report.reporteGUID}
                   description={report.descripcion}

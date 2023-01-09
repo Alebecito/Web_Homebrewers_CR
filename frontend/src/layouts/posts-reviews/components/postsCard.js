@@ -13,6 +13,7 @@ import MDTypography from "components/MDTypography";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import MDButton from "components/MDButton";
+import MDBox from "components/MDBox";
 import Icon from "@mui/material/Icon";
 import axios from "axios";
 
@@ -40,10 +41,23 @@ export default function PostsCard({
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        avatar={<Avatar sx={{ bgcolor: red }} aria-label="recipe" src={fotoDePerfil} ></Avatar>}
+        avatar={
+          <Avatar
+            sx={{ bgcolor: red }}
+            aria-label="recipe"
+            src={fotoDePerfil}
+          ></Avatar>
+        }
         title={title}
         subheader={date}
       />
+
+      <MDTypography variant="h6">
+        <MDBox sx={{ textAlign: "center", maxWidth: "95%" }}>
+          ID: {postId}
+        </MDBox>
+      </MDTypography>
+
       <CardMedia
         component="img"
         sx={{
@@ -59,7 +73,6 @@ export default function PostsCard({
         <MDTypography variant="body2" color="text.secondary">
           {description}
         </MDTypography>
-        <MDTypography variant="h6">ID: {postId}</MDTypography>
         <MDTypography variant="h6">Precio expuesto: ₡ {price}</MDTypography>
         <MDTypography variant="h6">Fecha de caducidad: {date}</MDTypography>
       </CardContent>
