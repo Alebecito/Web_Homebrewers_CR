@@ -27,6 +27,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
+  if (route.length > 2) {
+    route.splice(1, 1);
+  } 
 
   useEffect(() => {
     if (fixedNavbar) {
