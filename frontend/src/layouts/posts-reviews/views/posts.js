@@ -62,6 +62,7 @@ export default function Posts() {
                     image={post.fotoPublicacionNoticia}
                     postId={post.publicacionNoticiaGUID}
                     fotoDePerfil={post.fotoDePerfil}
+                    idUser = {id}
                   />
                 </Grid>
               ))}

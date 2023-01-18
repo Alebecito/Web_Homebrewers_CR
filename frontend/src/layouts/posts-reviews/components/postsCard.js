@@ -27,11 +27,16 @@ export default function PostsCard({
   image,
   postId,
   fotoDePerfil,
+  idUser,
 }) {
   const handleDelete = async () => {
-    let res = await axios.delete(
-      `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${postId}`
+   let res = await axios.delete(
+     `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${postId}`
     );
+
+    let notificationPost = await axios.post(
+      `http://localhost:5000/notificacion/createNotification/${idUser}`
+    )
 
     alert("Publicacion " + title + " eliminada");
 
