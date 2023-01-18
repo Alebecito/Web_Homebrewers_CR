@@ -10,7 +10,7 @@ export default function Comments() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/comentarios/getAllCommentsFromPublicationNew/${id}`
+        `https://homebrewersapis.onrender.com/comentarios/getAllCommentsFromPublicationNew/${id}`
       );
       let data = res.data[0];
       const dataIndexed = data.map((comment, id) =>

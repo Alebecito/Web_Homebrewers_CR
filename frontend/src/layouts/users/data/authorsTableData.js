@@ -23,7 +23,7 @@ export default function data() {
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.get(`http://localhost:5000/usuario/getUsersState`);
+      let res = await axios.get(`https://homebrewersapis.onrender.com/usuario/getUsersState`);
       let data = res.data;
       setUsuarios(data);
     };
@@ -42,7 +42,7 @@ export default function data() {
 
   const openSuccessSB = (idUsuario) => {
     let res = axios.put(
-      `http://localhost:5000/usuario/changeUserState/${idUsuario}/habilitado`
+      `https://homebrewersapis.onrender.com/usuario/changeUserState/${idUsuario}/habilitado`
     );
     alert("Se ha habilitado al usuario " + idUsuario);
     location.reload(false);
@@ -50,7 +50,7 @@ export default function data() {
 
   const openWarningSB = (idUsuario) => {
     let res = axios.put(
-      `http://localhost:5000/usuario/changeUserState/${idUsuario}/deshabilitado`
+      `https://homebrewersapis.onrender.com/usuario/changeUserState/${idUsuario}/deshabilitado`
     );
     alert("Se ha deshabilitado el usuario " + idUsuario);
     location.reload(false);
@@ -58,7 +58,7 @@ export default function data() {
 
   const openErrorSB = (idUsuario) => {
     let res = axios.delete(
-      `http://localhost:5000/usuario/deleteUser/${idUsuario}`
+      `https://homebrewersapis.onrender.com/usuario/deleteUser/${idUsuario}`
     );
     alert("Se ha eliminado el usuario " + idUsuario);
     location.reload(false);

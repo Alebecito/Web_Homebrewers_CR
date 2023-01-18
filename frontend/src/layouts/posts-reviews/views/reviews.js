@@ -18,7 +18,7 @@ export default function Reviews() {
     const fetchData = async () => {
       setLoading(true);
       let res = await axios.get(
-        `http://localhost:5000/resena/getAllReviewsFromUserAsAdmin/${id}`
+        `https://homebrewersapis.onrender.com/resena/getAllReviewsFromUserAsAdmin/${id}`
       );
       let data = res.data[0];
       setReviews(data);

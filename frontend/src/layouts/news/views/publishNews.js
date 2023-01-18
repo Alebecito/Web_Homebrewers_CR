@@ -57,7 +57,7 @@ export default function Edit_News(props) {
     formData.append("imagen", newImg);
 
     let res = await axios.post(
-      "http://localhost:5000/publicacionesnoticias/AddNew",
+      "https://homebrewersapis.onrender.com/publicacionesnoticias/AddNew",
       formData
     );
     alert("Noticia creada");

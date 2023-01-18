@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const Comment = ({ comments }) => {
   const handleDelete = async (commentID) => {
     let res = await axios.delete(
-      `http://localhost:5000/comentarios/deleteComment/${commentID}`
+      `https://homebrewersapis.onrender.com/comentarios/deleteComment/${commentID}`
     );
 
     alert("Comentario eliminado");

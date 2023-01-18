@@ -28,7 +28,7 @@ function ReportInfoCard({ reportID, description, info, shadow }) {
     if (open == true) {
       setOpen(false);
       let res = await axios.put(
-        `http://localhost:5000/reportes/assignReport/${reportID}/${admin}`
+        `https://homebrewersapis.onrender.com/reportes/assignReport/${reportID}/${admin}`
       );
       alert(`El Reporte ` + reportID + ` se ha asignado a ${admin}`);
       location.reload(false);
@@ -37,7 +37,7 @@ function ReportInfoCard({ reportID, description, info, shadow }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.get(`http://localhost:5000/usuario/getAdmins`);
+      let res = await axios.get(`https://homebrewersapis.onrender.com/usuario/getAdmins`);
       let data = res.data;
       setUsuarios(data);
     };

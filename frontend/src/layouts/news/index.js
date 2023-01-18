@@ -19,7 +19,7 @@ export default function News() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/publicacionesnoticias/getAllNews`
+        `https://homebrewersapis.onrender.com/publicacionesnoticias/getAllNews`
       );
       let data = res.data;
       setNoticias(data);

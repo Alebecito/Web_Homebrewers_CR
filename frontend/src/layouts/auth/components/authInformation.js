@@ -9,7 +9,7 @@ function AuthInformation() {
   const [usuarios, setUsuarios] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      let res = await axios.get(`http://localhost:5000/usuario/auth`);
+      let res = await axios.get(`https://homebrewersapis.onrender.com/usuario/auth`);
       let data = res.data;
       setUsuarios(data);
     };

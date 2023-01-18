@@ -19,7 +19,7 @@ function Reports() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/reportes/getAllnotAssignedReports`
+        `https://homebrewersapis.onrender.com/reportes/getAllnotAssignedReports`
       );
       let data = res.data;
       setReports(data);

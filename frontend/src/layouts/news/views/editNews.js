@@ -42,7 +42,7 @@ export default function Edit_News(props) {
     const fetchData = async () => {
       setLoading(true);
       let res = await axios.get(
-        `http://localhost:5000/publicacionesnoticias/GetSpecificNewAdmin/${id}`
+        `https://homebrewersapis.onrender.com/publicacionesnoticias/GetSpecificNewAdmin/${id}`
       );
       let data = res.data;
       data[0].fecha = parseDate(data[0].fecha);
@@ -86,7 +86,7 @@ export default function Edit_News(props) {
     }
 
     let res = await axios.put(
-      "http://localhost:5000/publicacionesnoticias/updateNew",
+      "https://homebrewersapis.onrender.com/publicacionesnoticias/updateNew",
       formData
     );
     alert("Noticia modificada");

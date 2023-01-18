@@ -13,7 +13,7 @@ function Own_Reports() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/reportes/getAllReportsFromAnAdmin/${adminID}`
+        `https://homebrewersapis.onrender.com/reportes/getAllReportsFromAnAdmin/${adminID}`
       );
       let data = res.data;
       setReports(data);

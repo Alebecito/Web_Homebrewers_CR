@@ -12,7 +12,7 @@ function OwnReportInfoCard({ reportID, description, info, shadow }) {
   const values = [];
 
   const handleClick = () => {
-    axios.put(`http://localhost:5000/reportes/closeTicket/${reportID}`);
+    axios.put(`https://homebrewersapis.onrender.com/reportes/closeTicket/${reportID}`);
     alert(`Reporte ${reportID} marcado como resuelto`);
     location.reload(false);
   };

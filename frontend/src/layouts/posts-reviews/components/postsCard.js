@@ -31,11 +31,11 @@ export default function PostsCard({
 }) {
   const handleDelete = async () => {
    let res = await axios.delete(
-     `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${postId}`
+     `https://homebrewersapis.onrender.com/publicacionesnoticias/deleteNewOrPublication/${postId}`
     );
 
     let notificationPost = await axios.post(
-      `http://localhost:5000/notificacion/createNotification/${idUser}`
+      `https://homebrewersapis.onrender.com/notificacion/createNotification/${idUser}`
     )
 
     alert("Publicacion " + title + " eliminada");

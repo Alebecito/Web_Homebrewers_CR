@@ -25,7 +25,7 @@ export default function data() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/usuario/GetAllUsersPostsReviews`
+        `https://homebrewersapis.onrender.com/usuario/GetAllUsersPostsReviews`
       );
       let data = res.data;
       setUsuarios(data);

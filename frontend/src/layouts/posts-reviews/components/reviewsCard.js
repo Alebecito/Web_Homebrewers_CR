@@ -24,7 +24,7 @@ export default function ReviewsCard({
 }) {
   const handleDelete = async () => {
     let res = await axios.delete(
-      `http://localhost:5000/resena/deleteReview/${reviewId}`
+      `https://homebrewersapis.onrender.com/resena/deleteReview/${reviewId}`
     );
 
     alert("Reseña " + title + " eliminada");

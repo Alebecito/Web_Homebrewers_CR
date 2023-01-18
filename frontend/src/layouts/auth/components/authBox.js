@@ -13,7 +13,7 @@ function AuthBox({ name, email, image, registrationDate, noGutter, userId }) {
 
   const handleAccept = () => {
     let res = axios.put(
-      `http://localhost:5000/usuario/authorizeUser/${userId}`
+      `https://homebrewersapis.onrender.com/usuario/authorizeUser/${userId}`
     );
     alert("Usuario " + name + " autorizado");
     location.reload();
@@ -21,7 +21,7 @@ function AuthBox({ name, email, image, registrationDate, noGutter, userId }) {
 
   const handleDeny = () => {
     let res = axios.delete(
-      `http://localhost:5000/usuario/deleteUser/${userId}`
+      `https://homebrewersapis.onrender.com/usuario/deleteUser/${userId}`
     );
     alert("Usuario " + name + " rechazado");
     location.reload();

@@ -29,7 +29,7 @@ export default function NewsCard({
 }) {
   const handleDelete = async () => {
     let res = await axios.delete(
-      `http://localhost:5000/publicacionesnoticias/deleteNewOrPublication/${id}`
+      `https://homebrewersapis.onrender.com/publicacionesnoticias/deleteNewOrPublication/${id}`
     );
     alert("Noticia: " + title + " eliminada");
     location.reload(false);

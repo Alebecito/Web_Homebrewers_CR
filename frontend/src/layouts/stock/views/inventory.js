@@ -15,7 +15,7 @@ export default function Inventory() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/inventario/getAllInventoryFromUser/${id}`
+        `https://homebrewersapis.onrender.com/inventario/getAllInventoryFromUser/${id}`
       );
       let data = res.data[0];
       setInventario(data);

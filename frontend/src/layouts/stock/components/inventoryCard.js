@@ -22,7 +22,7 @@ export default function InventoryCard({
 }) {
   const handleDelete = async () => {
     let res = await axios.delete(
-      `http://localhost:5000/producto/deleteProduct/${productoId}`
+      `https://homebrewersapis.onrender.com/producto/deleteProduct/${productoId}`
     );
     alert("Producto " + title + " eliminado del inventario");
 

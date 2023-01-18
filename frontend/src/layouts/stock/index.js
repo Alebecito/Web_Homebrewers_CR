@@ -11,7 +11,7 @@ export default function Stock() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await axios.get(
-        `http://localhost:5000/usuario/GetAllUsersInfo`
+        `https://homebrewersapis.onrender.com/usuario/GetAllUsersInfo`
       );
       let data = res.data;
       setUsuarios(data);
