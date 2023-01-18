@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.662c507d.css","mappings":"AAAA,QACI,YAAa,CACb,WACJ","sources":["layouts/news/views/news_image.css"],"sourcesContent":["#avatar {\r\n    height: 194px;\r\n    width: 315px;\r\n}"],"names":[],"sourceRoot":""}
