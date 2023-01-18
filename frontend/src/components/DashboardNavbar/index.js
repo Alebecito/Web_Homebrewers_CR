@@ -29,7 +29,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const route = useLocation().pathname.split("/").slice(1);
   if (route.length > 2) {
     route.splice(1, 1);
-  } 
+  }
 
   useEffect(() => {
     if (fixedNavbar) {
@@ -69,10 +69,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
   });
 
   const handleClick = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     localStorage.clear();
   };
-  
 
   return (
     <AppBar
@@ -110,7 +109,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 </Icon>
               </IconButton>
               <Link to="/sign-in">
-                <IconButton sx={navbarIconButton} size="small" disableRipple onClick={handleClick}>
+                <IconButton
+                  sx={navbarIconButton}
+                  size="small"
+                  disableRipple
+                  onClick={handleClick}
+                >
                   <Icon sx={iconsStyle}>logout</Icon>
                 </IconButton>
               </Link>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import PrivateRoute from "components/PrivateRoute";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Sidenav from "components/Sidenav";
@@ -46,8 +47,18 @@ export default function App() {
       if (route.collapse) {
         return getRoutes(route.collapse);
       }
-
-      if (route.route) {
+      if (route.route && route.route !== "/sign-in") {
+        return (
+          <Route exact path={route.route} element={<PrivateRoute />}>
+            <Route
+              exact
+              path={route.route}
+              element={route.component}
+              key={route.key}
+            />
+          </Route>
+        );
+      } else {
         return (
           <Route
             exact
@@ -57,7 +68,6 @@ export default function App() {
           />
         );
       }
-      return null;
     });
 
   return (
@@ -74,10 +84,12 @@ export default function App() {
           />
         </>
       )}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/sign-in" />} />
-      </Routes>
+      <Fragment>
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/sign-in" />} />
+        </Routes>
+      </Fragment>
     </ThemeProvider>
   );
 }
