@@ -7,10 +7,12 @@ import MDButton from "components/MDButton";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function News() {
   const navigate = useNavigate();
   const [noticias, setNoticias] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
     navigate("/news/publish_news");
@@ -18,11 +20,13 @@ export default function News() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       let res = await axios.get(
         `https://homebrewersapis.onrender.com/publicacionesnoticias/getAllNews`
       );
       let data = res.data;
       setNoticias(data);
+      setLoading(false);
     };
     fetchData().catch(console.error);
   }, []);
@@ -39,29 +43,35 @@ export default function News() {
       <MDButton variant="gradient" color="secondary" onClick={handleClick}>
         Publicar noticia
       </MDButton>
-      <MDBox mt={6}>
-        <Grid
-          container
-          spacing={10}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          {noticias.map((noticia) => (
-            <Grid item xs="auto" md="auto">
-              <NewsCard
-                title={noticia.titulo}
-                date={parseDate(noticia.fecha)}
-                image={noticia.fotoPublicacionNoticia}
-                description={noticia.cuerpo}
-                likes={noticia.cantidadDeLikes}
-                comments={noticia.cantidadDeComentarios}
-                id={noticia.publicacionNoticiaGUID}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </MDBox>
+      {loading === true ? (
+        <MDBox sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress color="secondary" />
+        </MDBox>
+      ) : (
+        <MDBox mt={6}>
+          <Grid
+            container
+            spacing={10}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {noticias.map((noticia) => (
+              <Grid item xs="auto" md="auto">
+                <NewsCard
+                  title={noticia.titulo}
+                  date={parseDate(noticia.fecha)}
+                  image={noticia.fotoPublicacionNoticia}
+                  description={noticia.cuerpo}
+                  likes={noticia.cantidadDeLikes}
+                  comments={noticia.cantidadDeComentarios}
+                  id={noticia.publicacionNoticiaGUID}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </MDBox>
+      )}
     </DashboardLayout>
   );
 }
